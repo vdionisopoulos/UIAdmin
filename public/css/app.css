@@ -1,0 +1,19 @@
+/* Sidebar compact mode (optional tweak) */
+.wrapper.compact-sidebar .sidebar .sidebar-label {
+  display: none;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Optional spacing between sidebar and main content */
+.main-content {
+  min-height: 100vh;
+  background-color: var(--bs-body-bg);
+}
+
+/* Optional spacing on cards */
+.card-body {
+  padding: 1.25rem;
+}

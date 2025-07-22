@@ -1,0 +1,20 @@
+{
+  "name": "admin-ui",
+  "version": "1.0.0",
+  "description": "Modular Bootstrap-based Admin UI with Express and EJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": ["admin", "bootstrap", "express", "ejs", "dashboard"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
