@@ -1,0 +1,130 @@
+<%- include('../partials/header', { title: 'SLA Comparison' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="wrapper d-flex flex-column min-vh-100">
+  <%- include('../partials/adsbar') %>
+
+  <div class="layout-content d-flex flex-grow-1">
+    <%- include('../partials/sidebar') %>
+
+    <main class="main-content p-4">
+      <%- include('../partials/searchbar') %>
+      <%- include('../partials/cookiebar') %>
+
+      <div class="container-fluid">
+        <h1 class="h3 mb-4">SLA Comparison</h1>
+
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Input Table -->
+            <form id="compareForm">
+              <div class="table-responsive mb-3">
+                <table class="table table-bordered text-center align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Enter SLA (%)</th>
+                      <th>🥇 SLA 1</th>
+                      <th>🥈 SLA 2</th>
+                      <th>🥉 SLA 3</th>
+                      <th>🏅 SLA 4</th>
+                      <th>🎖 SLA 5</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-start fw-bold">Target Uptime</td>
+                      <% const defaultValues = ['99.9', '99.95', '99.99', '99.999', '99.999']; %>
+                      <% for (let i = 1; i <= 5; i++) { %>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control text-center"
+                            id="sla<%= i %>"
+                            step="0.001"
+                            value="<%= defaultValues[i - 1] %>"
+                            min="90"
+                            max="99.999"
+                            required
+                          />
+                        </td>
+                      <% } %>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Warning -->
+              <div id="warning" class="text-danger fw-bold mb-3" style="display: none;">
+                ⚠️ SLA values must be between 90 and 99.999
+              </div>
+            </form>
+
+            <!-- Results Table -->
+            <div id="results" class="d-flex justify-content-center mt-4" style="display: none;">
+              <div style="min-width: 360px; max-width: 100%; width: 100%;">
+                <h2 class="h5 mb-3">Comparison Table</h2>
+
+                <div class="table-responsive">
+                  <table class="table table-bordered text-center">
+                    <thead class="table-primary">
+                      <tr>
+                        <th>Period</th>
+                        <th>🥇 SLA 1</th>
+                        <th>🥈 SLA 2</th>
+                        <th>🥉 SLA 3</th>
+                        <th>🏅 SLA 4</th>
+                        <th>🎖 SLA 5</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% const periods = ['day', 'month', 'quarter', 'year']; %>
+                      <% periods.forEach(p => { %>
+                        <tr>
+                          <td><%= p.charAt(0).toUpperCase() + p.slice(1) %></td>
+                          <% for (let i = 1; i <= 5; i++) { %>
+                            <td id="<%= p %><%= i %>">–</td>
+                          <% } %>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Copy Button -->
+                <button id="copyComparison" class="btn btn-sm mt-2 btn-outline-theme">📋 Copy Table</button>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- Legend -->
+<div class="d-flex justify-content-center mt-3">
+  <div class="border rounded bg-light-subtle p-3" style="max-width: 700px; width: 100%;">
+    <h6 class="text-body-secondary fw-semibold mb-2">Legend</h6>
+    <ul class="mb-0 ps-3 small text-body-secondary">
+      <li>
+        🥇 SLA 1, 🥈 SLA 2, 🥉 SLA 3, 🏅 SLA 4, 🎖 SLA 5 — represent the five SLA input values in the order they appear, from left to right.
+      </li>
+      <li>
+        These icons are consistently used in both the input and results tables to help you track which SLA is which.
+      </li>
+      <li>
+        <span class="bg-success-subtle px-2 py-1 rounded d-inline-block" style="font-weight: 500;">
+          Highlighted cells
+        </span> indicate the <strong>lowest downtime</strong> for each period (Day, Month, Quarter, Year).
+      </li>
+    </ul>
+  </div>
+</div>
+    </main>
+    
+  </div>
+
+
+  <%- include('../partials/footer', { script: 'tools/sla-comparison.js' }) %>
+</div>
+</div>
