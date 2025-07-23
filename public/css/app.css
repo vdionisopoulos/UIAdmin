@@ -1,19 +1,171 @@
-/* Sidebar compact mode (optional tweak) */
-.wrapper.compact-sidebar .sidebar .sidebar-label {
-  display: none;
+/* === Base Setup === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Optional spacing between sidebar and main content */
-.main-content {
+/* === Layout Wrappers === */
+.wrapper {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+.layout-content {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  background-color: var(--bs-body-bg);
+  border-top: 1px solid var(--bs-border-color);
+  padding: 0.5rem 1rem;
+}
+
+.main-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
   background-color: var(--bs-body-bg);
 }
 
-/* Optional spacing on cards */
+/* === Cards === */
 .card-body {
   padding: 1.25rem;
+}
+
+/* === Cookie Bar === */
+#cookieBar {
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 6px 6px 0 0;
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: var(--bs-body-bg);
+}
+
+
+/* === Sidebar Hidden Mode (Animated Slide) === */
+.wrapper.sidebar-hidden .sidebar {
+  transform: translateX(-100%);
+}
+
+.wrapper.sidebar-hidden .main-content {
+  margin-left: 0 !important;
+}
+
+/* === Compact Sidebar Mode === */
+.wrapper.compact-sidebar .sidebar {
+  width: 60px !important;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.wrapper.compact-sidebar .main-content {
+  margin-left: 60px;
+}
+
+.wrapper.compact-sidebar .sidebar .sidebar-label,
+.wrapper.compact-sidebar .sidebar .fs-5.fw-semibold {
+  display: none !important;
+}
+
+.wrapper.compact-sidebar .sidebar .nav-link {
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: center;
+}
+
+.wrapper.compact-sidebar .sidebar .nav-link .bi {
+  margin-right: 0 !important;
+}
+
+.wrapper.compact-sidebar .sidebar .nav-link.active {
+  text-align: center;
+}
+
+/* Compact Sidebar Footer / Mode Indicator */
+.wrapper.compact-sidebar .sidebar-mode-indicator {
+  display: none;
+  text-align: center;
+  font-size: 0.75rem;
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+/* Hide sidebar heading text and show caret icon in compact mode */
+.wrapper.compact-sidebar .sidebar-heading {
+  display: none !important;
+}
+
+.wrapper.compact-sidebar .sidebar-caret {
+  display: inline !important;
+  color: var(--bs-secondary);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Collapse all submenus when in compact mode */
+.wrapper.compact-sidebar .sidebar .collapse.show {
+  display: none !important;
+}
+
+/* === Sidebar Flyout in Compact Mode === */
+.sidebar-flyout {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 6px;
+  z-index: 1100;
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.25rem;
+  min-width: 180px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.wrapper.compact-sidebar .sidebar .nav-item:hover .sidebar-flyout,
+.wrapper.compact-sidebar .sidebar .nav-item.flyout-open .sidebar-flyout {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Sidebar flyout items */
+.sidebar-flyout .dropdown-item {
+  padding: 0.25rem 1rem;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: var(--bs-body-color);
+  white-space: nowrap;
+}
+
+.sidebar-flyout .dropdown-item:hover,
+.sidebar-flyout .dropdown-item.active {
+  background-color: var(--bs-primary-bg-subtle);
+  color: var(--bs-primary-text-emphasis);
+}
+
+/* Remove arrow in compact mode */
+.wrapper.compact-sidebar .sidebar .collapse-arrow {
+  display: none !important;
 }

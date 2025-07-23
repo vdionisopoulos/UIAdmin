@@ -1,8 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-body-secondary border-bottom w-100">
-  <div class="container-fluid px-4">
+  <div class="container-fluid px-4 d-flex align-items-center">
+
+    <!-- Sidebar Toggle Button (new) -->
+    <button class="btn btn-sm me-3 d-lg-inline d-inline" aria-label="Toggle sidebar menu" id="sidebarCollapseBtn">
+      <i class="bi bi-list fs-4"></i>
+    </button>
 
     <!-- Brand -->
-    <span class="navbar-brand mb-0 h5 link-body-emphasis">Admin UI</span>
+    <span class="navbar-brand mb-0 h5 link-body-emphasis">SLAnalytics</span>
 
     <!-- Right-side menu -->
     <ul class="navbar-nav ms-auto align-items-center">
@@ -32,9 +37,10 @@
 
       <!-- Search Toggle -->
       <li class="nav-item me-2">
-        <a href="#" class="nav-link" id="searchToggle">
-          <i class="bi bi-search"></i>
+        <a href="#" id="searchToggle" class="nav-link" aria-label="Toggle search bar">
+          <i class="align-middle" data-feather="search"></i>
         </a>
+
       </li>
     </ul>
   </div>

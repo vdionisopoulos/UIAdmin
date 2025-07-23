@@ -1,58 +1,103 @@
-<aside id="sidebar" class="sidebar bg-body-tertiary border-end">
-  <div class="d-flex flex-column p-3 min-vh-100" id="sidebarMenu">
+<% 
+  const slaToolPages = ['SLA Calculator', 'SLA Comparison', 'SLA Reverse'];
+  const passToolPages = ['Password Generator', 'Passphrase Generator', 'Password Checker'];
+%>
 
-    <!-- Sidebar Title -->
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-      <span class="fs-5 fw-semibold link-body-emphasis">Navigation</span>
-    </a>
-    <hr>
+<aside id="sidebar" class="sidebar bg-body-tertiary border-end d-flex flex-column p-3">
+  <!--<div class="d-flex flex-column flex-shrink-0 p-3 min-vh-100" id="sidebarMenu">-->
 
-    <!-- Sidebar Links -->
+
+    <!-- Sidebar Navigation -->
     <ul class="nav nav-pills flex-column mb-auto">
 
       <!-- Dashboard -->
-      <li class="nav-item">
-        <a href="/" class="nav-link active" aria-current="page">
+      <li class="nav-item" title="Dashboard">
+        <a href="/" class="nav-link <%= title === 'Dashboard' ? 'active' : '' %>" aria-current="page">
           <i class="bi bi-house me-2"></i>
           <span class="sidebar-label">Dashboard</span>
         </a>
       </li>
 
-      <!-- Tools -->
-      <li>
-        <a href="/tools/sla-calculator" class="nav-link link-body-emphasis">
-          <i class="bi bi-graph-up-arrow me-2"></i>
-          <span class="sidebar-label">SLA Calculator</span>
+      <!-- SLA Tools -->
+      <li class="nav-item position-relative" title="SLA Tools">
+        <a href="#slaTools"
+           data-bs-toggle="collapse"
+           role="button"
+           aria-expanded="<%= slaToolPages.includes(title) %>"
+           aria-controls="slaTools"
+           class="nav-link d-flex justify-content-between align-items-center <%= slaToolPages.includes(title) ? '' : 'collapsed' %>">
+          <span>
+            <i class="bi bi-graph-up-arrow me-2"></i>
+            <span class="sidebar-label">SLA Tools</span>
+          </span>
+          <i class="bi bi-chevron-down small collapse-arrow"></i>
         </a>
+
+        <!-- Full mode submenu -->
+        <ul id="slaTools" class="collapse list-unstyled ps-4 mt-1 <%= slaToolPages.includes(title) ? 'show' : '' %>">
+          <li><a href="/tools/sla-calculator" class="nav-link px-0 small <%= title === 'SLA Calculator' ? 'active' : '' %>">→ SLA Calculator</a></li>
+          <li><a href="/tools/sla-comparison" class="nav-link px-0 small <%= title === 'SLA Comparison' ? 'active' : '' %>">→ SLA Comparison</a></li>
+          <li><a href="/tools/sla-reverse" class="nav-link px-0 small <%= title === 'SLA Reverse' ? 'active' : '' %>">→ SLA Reverse</a></li>
+        </ul>
+
+        <!-- Flyout submenu for compact -->
+        <div class="sidebar-flyout">
+          <ul class="list-unstyled mb-0">
+            <li><a href="/tools/sla-calculator" class="dropdown-item <%= title === 'SLA Calculator' ? 'active' : '' %>">SLA Calculator</a></li>
+            <li><a href="/tools/sla-comparison" class="dropdown-item <%= title === 'SLA Comparison' ? 'active' : '' %>">SLA Comparison</a></li>
+            <li><a href="/tools/sla-reverse" class="dropdown-item <%= title === 'SLA Reverse' ? 'active' : '' %>">SLA Reverse</a></li>
+          </ul>
+        </div>
       </li>
 
-      <li>
-        <a href="/tools/password-generator" class="nav-link link-body-emphasis">
-          <i class="bi bi-shield-lock me-2"></i>
-          <span class="sidebar-label">Password Generator</span>
+      <!-- Password Tools -->
+      <li class="nav-item position-relative" title="Password Tools">
+        <a href="#passTools"
+           data-bs-toggle="collapse"
+           role="button"
+           aria-expanded="<%= passToolPages.includes(title) %>"
+           aria-controls="passTools"
+           class="nav-link d-flex justify-content-between align-items-center <%= passToolPages.includes(title) ? '' : 'collapsed' %>">
+          <span>
+            <i class="bi bi-shield-lock me-2"></i>
+            <span class="sidebar-label">Password Tools</span>
+          </span>
+          <i class="bi bi-chevron-down small collapse-arrow"></i>
         </a>
+
+        <!-- Full mode submenu -->
+        <ul id="passTools" class="collapse list-unstyled ps-4 mt-1 <%= passToolPages.includes(title) ? 'show' : '' %>">
+          <li><a href="/tools/password-generator" class="nav-link px-0 small <%= title === 'Password Generator' ? 'active' : '' %>">→ Password Generator</a></li>
+          <li><a href="/tools/passphrase" class="nav-link px-0 small <%= title === 'Passphrase Generator' ? 'active' : '' %>">→ Passphrase Generator</a></li>
+          <li><a href="/tools/password-checker" class="nav-link px-0 small <%= title === 'Password Checker' ? 'active' : '' %>">→ Strength Checker</a></li>
+        </ul>
+
+        <!-- Flyout submenu for compact -->
+        <div class="sidebar-flyout">
+          <ul class="list-unstyled mb-0">
+            <li><a href="/tools/password-generator" class="dropdown-item <%= title === 'Password Generator' ? 'active' : '' %>">Password Generator</a></li>
+            <li><a href="/tools/passphrase" class="dropdown-item <%= title === 'Passphrase Generator' ? 'active' : '' %>">Passphrase Generator</a></li>
+            <li><a href="/tools/password-checker" class="dropdown-item <%= title === 'Password Checker' ? 'active' : '' %>">Strength Checker</a></li>
+          </ul>
+        </div>
       </li>
 
-      <li>
-        <a href="/tools/ip-lookup" class="nav-link link-body-emphasis">
+      <!-- IP Lookup -->
+      <li class="nav-item" title="IP Lookup">
+        <a href="/tools/ip-lookup" class="nav-link link-body-emphasis <%= title === 'IP Lookup' ? 'active' : '' %>">
           <i class="bi bi-globe2 me-2"></i>
           <span class="sidebar-label">IP Lookup</span>
         </a>
       </li>
 
-      <li>
-        <a href="/settings" class="nav-link link-body-emphasis">
+      <!-- Settings -->
+      <li class="nav-item" title="Settings">
+        <a href="/settings" class="nav-link link-body-emphasis <%= title === 'Settings' ? 'active' : '' %>">
           <i class="bi bi-gear me-2"></i>
           <span class="sidebar-label">Settings</span>
         </a>
       </li>
+
     </ul>
 
-    <hr>
-
-    <!-- Sidebar Mode Indicator -->
-    <div class="text-muted small d-none d-md-block">
-      <span class="sidebar-mode-indicator">Mode: Default</span>
-    </div>
-  </div>
 </aside>

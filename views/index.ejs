@@ -1,51 +1,49 @@
 <%- include('partials/header', { title }) %>
 <%- include('partials/navbar') %>
 
-<!-- Layout wrapper (flex container) -->
-<div class="wrapper d-flex">
+<div class="wrapper d-flex flex-column min-vh-100">
+  <%- include('partials/adsbar') %>
 
-  <!-- Sidebar (include only once!) -->
-  <%- include('partials/sidebar') %>
+  <!-- Main layout (sidebar + main content) -->
+  <div class="layout-content d-flex flex-grow-1">
+    
+    <!-- Sidebar -->
+    <%- include('partials/sidebar') %>
 
-  <!-- Main content -->
-  <main class="main-content flex-grow-1 p-4">
+    <!-- Main content area -->
+    <main class="main-content p-4 flex-grow-1">
+      <%- include('partials/searchbar') %>
+      <%- include('partials/cookiebar') %>
 
-    <!-- Search (offcanvas) -->
-    <%- include('partials/searchbar') %>
+      <div class="container-fluid">
+        <h1 class="mb-4"><%= title %></h1>
+        <p>Welcome to the Admin UI Dashboard. Use the sidebar to navigate tools.</p>
 
-    <!-- Ads & Cookie Bars -->
-    <%- include('partials/adsbar') %>
-    <%- include('partials/cookiebar') %>
-
-    <div class="container-fluid">
-      <h1 class="mb-4"><%= title %></h1>
-      <p>Welcome to the Admin UI Dashboard. Use the sidebar to navigate tools.</p>
-
-      <!-- Example tool cards -->
-      <div class="row">
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">SLA Calculator</h5>
-              <p class="card-text">Calculate uptime & downtime SLA metrics.</p>
-              <a href="/tools/sla-calculator" class="btn btn-primary">Open</a>
+        <div class="row">
+          <!-- Cards -->
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">SLA Calculator</h5>
+                <p class="card-text">Calculate uptime & downtime SLA metrics.</p>
+                <a href="/tools/sla-calculator" class="btn btn-primary">Open</a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Password Generator</h5>
-              <p class="card-text">Generate secure passwords quickly.</p>
-              <a href="/tools/password-generator" class="btn btn-primary">Open</a>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Password Generator</h5>
+                <p class="card-text">Generate secure passwords quickly.</p>
+                <a href="/tools/password-generator" class="btn btn-primary">Open</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
+  </div>
 
-  </main>
+  <!-- Sticky footer -->
+  <%- include('partials/footer') %>
 </div>
-
-<%- include('partials/footer') %>

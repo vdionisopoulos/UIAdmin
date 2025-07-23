@@ -4,12 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const adBanner = document.getElementById("adBanner");
   const dismissAdBtn = document.getElementById("dismissAdBanner");
 
-  // Show cookie bar if not accepted
-  if (!localStorage.getItem("cookieAccepted") && cookieBar) {
+  // ✅ Show cookie bar if not accepted (persistent)
+  if (cookieBar && !localStorage.getItem("cookieAccepted")) {
     cookieBar.style.display = "block";
   }
 
-  // Accept cookies
   if (acceptCookiesBtn) {
     acceptCookiesBtn.addEventListener("click", function () {
       localStorage.setItem("cookieAccepted", "true");
@@ -17,15 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Show ad banner if not dismissed
-  if (!localStorage.getItem("adDismissed") && adBanner) {
+  // ✅ Only show ad banner once per session
+  const adDismissed = sessionStorage.getItem("adDismissed");
+
+  if (adBanner && !adDismissed) {
     adBanner.style.display = "block";
+  } else if (adBanner) {
+    adBanner.style.display = "none";
   }
 
-  // Dismiss ad banner
   if (dismissAdBtn) {
     dismissAdBtn.addEventListener("click", function () {
-      localStorage.setItem("adDismissed", "true");
+      sessionStorage.setItem("adDismissed", "true");
       adBanner.style.display = "none";
     });
   }
