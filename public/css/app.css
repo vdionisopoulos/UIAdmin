@@ -169,3 +169,12 @@ body {
 .wrapper.compact-sidebar .sidebar .collapse-arrow {
   display: none !important;
 }
+
+.btn-twitter {
+  background-color: #1DA1F2;
+  color: #fff;
+}
+.btn-twitter:hover {
+  background-color: #0d8ddb;
+  color: #fff;
+}

@@ -4,8 +4,8 @@ const path = require('path');
 
 const app = express();
 
-// ROUTES
-const indexRouter = require('./routes/index');
+// Middleware to parse JSON requests (for POST /api/share/increment)
+app.use(express.json());
 
 // VIEW ENGINE SETUP
 app.set('view engine', 'ejs');
@@ -17,14 +17,18 @@ app.use('/css', express.static(path.join(__dirname, 'public/css')));
 app.use('/js', express.static(path.join(__dirname, 'public/js')));
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 
-// ROUTES
+// ✅ API ROUTES — register before anything else
+const shareCounterRoute = require('./routes/api/share-counter');
+app.use('/api/share', shareCounterRoute);
+
+// MAIN ROUTES
+const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
-// 404 HANDLER
+// 404 HANDLER (must be last)
 app.use((req, res) => {
   res.status(404).render('404', { title: 'Page Not Found' });
 });
-
 
 // SERVER START
 const PORT = process.env.PORT || 3000;

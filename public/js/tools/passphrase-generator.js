@@ -48,3 +48,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+function updateShareCountDisplay(count) {
+  const el = document.getElementById('shareCount');
+  if (el) el.textContent = count;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Load counter
+  fetch('/api/share/passphrase-generator')
+    .then(res => {
+      if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+      return res.json();
+    })
+    .then(data => updateShareCountDisplay(data.count))
+    .catch(err => console.error('Error loading share count:', err));
+
+  // Register share events
+  document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      fetch('/api/share/increment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tool: 'passphrase-generator' })
+      })
+        .then(res => {
+          if (!res.ok) throw new Error(`POST failed: ${res.status}`);
+          return res.json();
+        })
+        .then(data => updateShareCountDisplay(data.count))
+        .catch(err => console.error('Error updating share count:', err));
+    });
+  });
+});
+

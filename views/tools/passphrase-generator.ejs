@@ -14,6 +14,9 @@
       <div class="container-fluid">
         <h1 class="h3 mb-4">Passphrase Generator</h1>
 
+        <!-- Social Buttons + Share Count -->
+        <%- include('../partials/social-buttons') %>
+
         <div class="card">
           <div class="card-body d-flex justify-content-center">
             <form id="phraseForm" style="min-width: 360px; max-width: 600px; width: 100%;">
@@ -54,9 +57,70 @@
             <p id="entropy" class="small text-muted mt-2 mb-0"></p>
           </div>
         </div>
-      </div>
-    </main>
+
+<!-- Documentation Section -->
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">📚 About This Tool</h5>
+    <p>
+      This tool generates random passphrases using the Diceware method. 
+      Each phrase is composed of common, memorable words, making them secure yet easy to recall.
+      You can choose how many words are used and what separator (delimiter) appears between them.
+    </p>
+
+    <h6>🔐 Why Use Passphrases?</h6>
+    <p>
+      Unlike complex passwords with random characters, passphrases are made of real words—longer, yet human-readable.
+      A passphrase like <code>cat-planet-zebra-fork</code> is easier to remember than <code>j$L4@eX#</code> and often more secure.
+    </p>
+
+    <h6>📏 Entropy & Strength Explained</h6>
+    <p>
+      Entropy quantifies unpredictability. The more entropy, the harder a password is to crack.
+      It's calculated as:
+    </p>
+    <pre>Entropy = L × log₂(N)</pre>
+    <ul>
+      <li><strong>L</strong>: Number of words in the passphrase</li>
+      <li><strong>N</strong>: Size of the wordlist (e.g., 7776 for Diceware)</li>
+    </ul>
+    <p>
+      For example, a 6-word passphrase using a 7776-word list has an estimated entropy of 
+      <strong>~77 bits</strong>, making it resilient against brute-force attacks.
+    </p>
+
+    <h6>🛡️ Password Best Practices</h6>
+    <ul>
+      <li>Avoid using the same password or passphrase across sites</li>
+      <li>Don’t reuse old passwords—even with slight variations</li>
+      <li>Use a password manager to securely store long passphrases</li>
+      <li>Enable multi-factor authentication wherever possible</li>
+      <li>Don't use names, birthdays, or real phrases from books/movies</li>
+    </ul>
+
+    <h6>🎲 What is Diceware?</h6>
+    <p>
+      Diceware is a method where each word in a passphrase is selected by rolling five dice. 
+      The resulting 5-digit number is mapped to a word from a 7776-entry list.
+      Our tool replicates this process digitally using a secure randomizer.
+    </p>
+
+    <h6>🖥️ Offline/Manual Generation Options</h6>
+    <ul>
+      <li><strong>Linux/macOS</strong>: Use <code>/dev/urandom</code> or <code>shuf</code></li>
+      <li><strong>Windows</strong>: PowerShell’s <code>Get-Random</code> with a wordlist</li>
+      <li><strong>CLI Tools</strong>: Use <code>diceware</code> or <code>pwgen</code></li>
+      <li><strong>Password Managers</strong>: KeePass, Bitwarden, 1Password often include generators</li>
+      <li><strong>Manual Dice</strong>: Print a Diceware list and roll five 6-sided dice</li>
+    </ul>
+
+    <h6>📌 Pro Tip</h6>
+    <p>
+      Longer passphrases (5–7 words) with diverse delimiters are more secure and easier to type than mixed-case-symbol-number passwords.
+    </p>
   </div>
+</div>
+
 
   <%- include('../partials/footer', { script: 'tools/passphrase-generator.js' }) %>
 </div>
