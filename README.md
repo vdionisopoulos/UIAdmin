@@ -1,3 +1,23 @@
+v1.3.0 – July 2025
+✅ Added favicon.ico support and Express static middleware fix
+🔐 Fixed password strength checker integration with zxcvbn.js
+🧪 Added password validation logic with entropy + crack time
+🎨 Improved layout rendering (favicon, 404 handler, head cleanup)
+⚙️ Diagnosed and documented browser-specific CSS warnings (Firefox)
+v1.2.0 – July 2025
+✨ Added collapsible sidebar menus for SLA and Password tools
+🎨 Unified layout under AdminKit Bootstrap 5 admin template
+🛠 Modularized header.ejs, footer.ejs, sidebar.ejs, and navbar.ejs
+🚀 Added tool routes + partials for sla-comparison and sla-reverse
+v1.1.0 – June 2025
+🛠 Added Passphrase Generator with entropy and delimiter options
+🔐 Improved password generation with better entropy estimates
+🎯 Added settings.json handling for dark/light theme + comma delimiter
+v1.0.0 – May 2025
+🚀 Initial launch of SLAlytics Admin UI project
+📊 Included SLA Calculator, SLA Comparison, SLA Reverse (SLE)
+🔐 Added Password Generator and Strength Checker tools
+
 # UIAdmin
 
 📁 UIAdmin/                 <-- Root project folder

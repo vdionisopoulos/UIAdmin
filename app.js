@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // STATIC FILES
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'public/css')));
 app.use('/js', express.static(path.join(__dirname, 'public/js')));
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
@@ -23,6 +24,7 @@ app.use('/', indexRouter);
 app.use((req, res) => {
   res.status(404).render('404', { title: 'Page Not Found' });
 });
+
 
 // SERVER START
 const PORT = process.env.PORT || 3000;

@@ -1,0 +1,56 @@
+<%- include('../partials/header', { title: 'Changelog' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="wrapper d-flex flex-column min-vh-100">
+  <%- include('../partials/adsbar') %>
+
+  <div class="layout-content d-flex flex-grow-1">
+    <%- include('../partials/sidebar') %>
+
+    <main class="main-content p-4">
+      <%- include('../partials/searchbar') %>
+      <%- include('../partials/cookiebar') %>
+
+      <div class="container-fluid">
+        <h1 class="h3 mb-4">SLAlytics Changelog</h1>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">v1.3.0 – July 2025</h5>
+            <ul>
+              <li>✅ Added <code>favicon.ico</code> support and Express static middleware fix</li>
+              <li>🔐 Fixed password strength checker integration with zxcvbn.js</li>
+              <li>🧪 Added password validation logic with entropy + crack time</li>
+              <li>🎨 Improved layout rendering (favicon, 404 handler, head cleanup)</li>
+              <li>⚙️ Diagnosed and documented browser-specific CSS warnings (Firefox)</li>
+            </ul>
+
+            <h5 class="card-title mt-4">v1.2.0 – July 2025</h5>
+            <ul>
+              <li>✨ Added collapsible sidebar menus for SLA and Password tools</li>
+              <li>🎨 Unified layout under AdminKit Bootstrap 5 admin template</li>
+              <li>🛠 Modularized <code>header.ejs</code>, <code>footer.ejs</code>, <code>sidebar.ejs</code>, and <code>navbar.ejs</code></li>
+              <li>🚀 Added tool routes + partials for <code>sla-comparison</code> and <code>sla-reverse</code></li>
+            </ul>
+
+            <h5 class="card-title mt-4">v1.1.0 – June 2025</h5>
+            <ul>
+              <li>🛠 Added Passphrase Generator with entropy and delimiter options</li>
+              <li>🔐 Improved password generation with better entropy estimates</li>
+              <li>🎯 Added settings.json handling for dark/light theme + comma delimiter</li>
+            </ul>
+
+            <h5 class="card-title mt-4">v1.0.0 – May 2025</h5>
+            <ul>
+              <li>🚀 Initial launch of SLAlytics Admin UI project</li>
+              <li>📊 Included SLA Calculator, SLA Comparison, SLA Reverse (SLE)</li>
+              <li>🔐 Added Password Generator and Strength Checker tools</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+</div>

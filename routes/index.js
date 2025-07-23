@@ -17,9 +17,12 @@ router.use('/tools', require('./tools/sla'));
 // ✅ Place real tool routes BEFORE the catch-all
 router.use('/tools', require('./tools/password'));
 
+router.use('/tools', require('./tools/changelog'));
+
 // ❌ 404 fallback must come last
 router.use('/tools', (req, res) => {
   res.status(404).render('404', { title: 'Tool Not Found' });
 });
+
 
 module.exports = router;
