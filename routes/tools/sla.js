@@ -16,4 +16,9 @@ router.get('/sla-reverse', (req, res) => {
   res.render('tools/sla-reverse', { title: 'SLA Reverse' });
 });
 
+router.get('/sla-reverse', (req, res) => {
+  res.render('tools/sla-reverse', { title: 'SLA Reverse' });
+});
+
+
 module.exports = router;

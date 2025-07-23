@@ -1,0 +1,68 @@
+<%- include('../partials/header', { title: 'SLA Reverse' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="wrapper d-flex flex-column min-vh-100">
+  <%- include('../partials/adsbar') %>
+
+  <div class="layout-content d-flex flex-grow-1">
+    <%- include('../partials/sidebar') %>
+
+    <main class="main-content p-4">
+      <%- include('../partials/searchbar') %>
+      <%- include('../partials/cookiebar') %>
+
+      <div class="container-fluid">
+        <h1 class="h3 mb-4">SLA Reverse (Seconds → SLA%)</h1>
+
+        <div class="card">
+          <div class="card-body">
+            <form id="reverseForm" class="d-flex justify-content-center">
+              <div style="min-width: 360px; max-width: 600px; width: 100%;">
+                <div class="mb-3">
+                  <label for="downtime" class="form-label">
+                    Downtime (in seconds) <span class="ms-1" title="Total downtime during selected period">⏱️</span>
+                  </label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="downtime"
+                    value="60"
+                    min="0"
+                    step="1"
+                    required
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="period" class="form-label">Period</label>
+                  <select class="form-select" id="period">
+                    <option value="1">Day</option>
+                    <option value="30.4375" selected>Month</option>
+                    <option value="91.3125">Quarter</option>
+                    <option value="365.25">Year</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+
+            <div id="results" class="d-flex justify-content-center mt-4" style="display: none;">
+              <div style="min-width: 360px; max-width: 600px; width: 100%;">
+                <h2 class="h5 mb-3">Calculated SLA</h2>
+                <div class="alert alert-success text-center">
+                <strong>SLA:</strong> <span id="slaResult">–</span>
+                </div>
+
+                <div class="text-center mt-2">
+                <button id="copySla" class="btn btn-sm btn-outline-theme">📋 Copy Result</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer', { script: 'tools/sla-reverse.js' }) %>
+</div>

@@ -14,6 +14,8 @@ router.get('/settings', (req, res) => {
 // ✅ Place real tool routes BEFORE the catch-all
 router.use('/tools', require('./tools/sla'));
 
+// ✅ Place real tool routes BEFORE the catch-all
+router.use('/tools', require('./tools/password'));
 
 // ❌ 404 fallback must come last
 router.use('/tools', (req, res) => {

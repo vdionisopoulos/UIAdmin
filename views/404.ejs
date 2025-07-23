@@ -1,0 +1,24 @@
+<%- include('./partials/header', { title: '404 Not Found' }) %>
+<%- include('./partials/navbar') %>
+
+<div class="wrapper d-flex flex-column min-vh-100">
+  <%- include('./partials/adsbar') %>
+
+  <div class="layout-content d-flex flex-grow-1">
+    <%- include('./partials/sidebar') %>
+
+    <main class="main-content d-flex align-items-center justify-content-center p-4">
+      <div class="text-center">
+        <h1 class="display-4 fw-bold text-danger">404</h1>
+        <p class="lead text-muted mb-3">Oops! The page you requested could not be found.</p>
+        <p class="text-muted mb-4">It may have been removed, renamed, or never existed.</p>
+
+        <a href="/" class="btn btn-theme border border-1">
+          ⬅ Back to Dashboard
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <%- include('./partials/footer') %>
+</div>
