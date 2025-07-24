@@ -53,7 +53,6 @@
                     <tr><td>Per Quarter</td><td id="quarterResult">–</td></tr>
                     <tr><td>Per Year</td><td id="yearResult">–</td></tr>
                   </tbody>
-
                 </table>
                 <button id="copyResults" class="btn btn-sm mt-2 btn-outline-theme">📋 Copy Results</button>
               </div>
@@ -65,5 +64,67 @@
     </main>
   </div>
 
-  <%- include('../partials/footer', { script: 'tools/sla-calculator.js' }) %>
+  <%- include('../partials/footer') %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('slaForm');
+    const resultsSection = document.getElementById('results');
+    const copyButton = document.getElementById('copyResults');
+    const inputs = {
+      day: document.getElementById('dayResult'),
+      month: document.getElementById('monthResult'),
+      quarter: document.getElementById('quarterResult'),
+      year: document.getElementById('yearResult'),
+    };
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const uptimeField = document.getElementById('uptime');
+      const uptime = uptimeField.value.trim();
+
+      const parsed = parseFloat(uptime);
+      if (isNaN(parsed) || parsed < 90.001 || parsed >= 100) {
+        uptimeField.classList.add('is-invalid');
+        resultsSection.style.display = 'none';
+        return;
+      }
+
+      uptimeField.classList.remove('is-invalid');
+
+      const response = await fetch('/tools/sla-calculate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uptime: parsed }),
+      });
+
+      if (!response.ok) {
+        resultsSection.style.display = 'none';
+        return;
+      }
+
+      const data = await response.json();
+      inputs.day.textContent = `${data.day} seconds`;
+      inputs.month.textContent = `${data.month} seconds`;
+      inputs.quarter.textContent = `${data.quarter} seconds`;
+      inputs.year.textContent = `${data.year} seconds`;
+      resultsSection.style.display = 'block';
+    });
+
+    copyButton.addEventListener('click', () => {
+      const text = [
+        `Per Day: ${inputs.day.textContent}`,
+        `Per Month: ${inputs.month.textContent}`,
+        `Per Quarter: ${inputs.quarter.textContent}`,
+        `Per Year: ${inputs.year.textContent}`,
+      ].join('\n');
+
+      navigator.clipboard.writeText(text).then(() => {
+        copyButton.textContent = '✅ Copied!';
+        setTimeout(() => copyButton.textContent = '📋 Copy Results', 1500);
+      });
+    });
+  });
+</script>
