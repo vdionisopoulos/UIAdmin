@@ -78,3 +78,4 @@ document.addEventListener("DOMContentLoaded", function () {
     return (length * Math.log2(pool)).toFixed(2);
   }
 });
+ 

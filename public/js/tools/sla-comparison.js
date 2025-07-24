@@ -76,7 +76,7 @@ if (copyBtn) {
       copyBtn.textContent = "✅ Copied!";
       setTimeout(() => copyBtn.textContent = "📋 Copy Table", 2000);
     });
-  });
+  }); 
 }
 
 

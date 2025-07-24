@@ -54,4 +54,4 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => (copyBtn.textContent = '📋 Copy'), 1500);
     });
   });
-});
+}); 

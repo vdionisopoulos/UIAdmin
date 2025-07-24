@@ -162,17 +162,17 @@ body {
 .sidebar-flyout .dropdown-item:hover,
 .sidebar-flyout .dropdown-item.active {
   background-color: var(--bs-primary-bg-subtle);
-  color: var(--bs-primary-text-emphasis);
+  color: var(--bs-primary-text-emphasis); 
 }
 
 /* Remove arrow in compact mode */
-.wrapper.compact-sidebar .sidebar .collapse-arrow {
+.wrapper.compact-sidebar .sidebar .collapse-arrow { 
   display: none !important;
 }
 
 .btn-twitter {
   background-color: #1DA1F2;
-  color: #fff;
+  color: #fff; 
 }
 .btn-twitter:hover {
   background-color: #0d8ddb;

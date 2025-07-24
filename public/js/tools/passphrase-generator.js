@@ -79,6 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => updateShareCountDisplay(data.count))
         .catch(err => console.error('Error updating share count:', err));
     });
-  });
+  }); 
 });
 
