@@ -25,10 +25,16 @@ app.use('/api/share', shareCounterRoute);
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
+app.use('/js/tools', (req, res) => {
+  res.status(403).send('Forbidden');
+});
+
 // 404 HANDLER (must be last)
 app.use((req, res) => {
   res.status(404).render('404', { title: 'Page Not Found' });
 });
+
+
 
 // SERVER START
 const PORT = process.env.PORT || 3000;
